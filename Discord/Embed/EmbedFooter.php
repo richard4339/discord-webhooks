@@ -5,7 +5,7 @@ namespace Discord\Embed;
 /**
  * Class EmbedFooter
  *
- * @author  Scrummer <scrummer@labymod.net>
+ * @author  Scrummer <scrummer@gmx.ch>
  * @package DiscordWebhooks\Embed
  */
 class EmbedFooter extends AbstractEmbed

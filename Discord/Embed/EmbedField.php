@@ -5,7 +5,7 @@ namespace Discord\Embed;
 /**
  * Class EmbedField
  *
- * @author  Scrummer <scrummer@labymod.net>
+ * @author  Scrummer <scrummer@gmx.ch>
  * @package DiscordWebhooks\Embed
  */
 class EmbedField extends AbstractEmbed

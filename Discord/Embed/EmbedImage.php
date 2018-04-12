@@ -5,7 +5,7 @@ namespace Discord\Embed;
 /**
  * Class EmbedImage
  *
- * @author  Scrummer <scrummer@labymod.net>
+ * @author  Scrummer <scrummer@gmx.ch>
  * @package DiscordWebhooks\Embed
  */
 class EmbedImage extends AbstractEmbed

@@ -8,7 +8,7 @@ namespace Discord;
  * Represents a file that can be passed
  * to be downloaded.
  *
- * @author  Scrummer <scrummer@labymod.net>
+ * @author  Scrummer <scrummer@gmx.ch>
  * @package Discord
  */
 class File
