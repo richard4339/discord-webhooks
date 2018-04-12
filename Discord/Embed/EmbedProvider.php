@@ -15,7 +15,7 @@ class EmbedProvider extends AbstractEmbed
      *
      * @return EmbedProvider
      */
-    public function setName( $name )
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -27,7 +27,7 @@ class EmbedProvider extends AbstractEmbed
      *
      * @return EmbedProvider
      */
-    public function setUrl( $url )
+    public function setUrl($url)
     {
         $this->url = $url;
 

@@ -15,7 +15,7 @@ class EmbedImage extends AbstractEmbed
      *
      * @return self
      */
-    public function setUrl( $url )
+    public function setUrl($url)
     {
         $this->url = $url;
 
@@ -27,7 +27,7 @@ class EmbedImage extends AbstractEmbed
      *
      * @return self
      */
-    public function setProxyUrl( $proxyUrl )
+    public function setProxyUrl($proxyUrl)
     {
         $this->proxyUrl = $proxyUrl;
 
@@ -39,7 +39,7 @@ class EmbedImage extends AbstractEmbed
      *
      * @return self
      */
-    public function setHeight( $height )
+    public function setHeight($height)
     {
         $this->height = $height;
 
@@ -51,7 +51,7 @@ class EmbedImage extends AbstractEmbed
      *
      * @return self
      */
-    public function setWidth( $width )
+    public function setWidth($width)
     {
         $this->width = $width;
 

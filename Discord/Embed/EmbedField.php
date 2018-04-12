@@ -15,7 +15,7 @@ class EmbedField extends AbstractEmbed
      *
      * @return EmbedField
      */
-    public function setName( $name )
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -27,7 +27,7 @@ class EmbedField extends AbstractEmbed
      *
      * @return EmbedField
      */
-    public function setValue( $value )
+    public function setValue($value)
     {
         $this->value = $value;
 
@@ -39,7 +39,7 @@ class EmbedField extends AbstractEmbed
      *
      * @return EmbedField
      */
-    public function setInline( $inline )
+    public function setInline($inline)
     {
         $this->inline = $inline;
 

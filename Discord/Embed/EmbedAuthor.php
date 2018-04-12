@@ -15,7 +15,7 @@ class EmbedAuthor extends AbstractEmbed
      *
      * @return EmbedAuthor
      */
-    public function setName( $name )
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -27,7 +27,7 @@ class EmbedAuthor extends AbstractEmbed
      *
      * @return EmbedAuthor
      */
-    public function setUrl( $url )
+    public function setUrl($url)
     {
         $this->url = $url;
 
@@ -39,7 +39,7 @@ class EmbedAuthor extends AbstractEmbed
      *
      * @return EmbedAuthor
      */
-    public function setIconUrl( $iconUrl )
+    public function setIconUrl($iconUrl)
     {
         $this->iconUrl = $iconUrl;
 
@@ -51,7 +51,7 @@ class EmbedAuthor extends AbstractEmbed
      *
      * @return EmbedAuthor
      */
-    public function setProxyIconUrl( $proxyIconUrl )
+    public function setProxyIconUrl($proxyIconUrl)
     {
         $this->proxyIconUrl = $proxyIconUrl;
 

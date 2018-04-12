@@ -29,10 +29,10 @@ class File
      * @param string $relativPath
      * @param string $name
      */
-    public function __construct( $relativPath, $name = null )
+    public function __construct($relativPath, $name = null)
     {
-        $this->file = realpath( $relativPath );
-        $this->fileName = null === $name ? basename( $$relativPath ) : $name;
+        $this->file     = realpath($relativPath);
+        $this->fileName = null === $name ? basename($$relativPath) : $name;
     }
 
     /**

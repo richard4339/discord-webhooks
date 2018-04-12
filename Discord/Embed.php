@@ -27,7 +27,7 @@ class Embed implements EmbedInterface
     /**
      * @var string $type
      */
-    private $type = "rich";
+    private $type = 'rich';
 
     /**
      * @var string $description
@@ -89,7 +89,7 @@ class Embed implements EmbedInterface
      *
      * @param string $url
      */
-    public function __construct( $url = '' )
+    public function __construct($url = '')
     {
         $this->url = $url;
     }
@@ -99,7 +99,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setTitle( $title )
+    public function setTitle($title)
     {
         $this->title = $title;
 
@@ -111,7 +111,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setDescription( $description )
+    public function setDescription($description)
     {
         $this->description = $description;
 
@@ -123,7 +123,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setTimestamp( DateTime $dateTimeObject )
+    public function setTimestamp(DateTime $dateTimeObject)
     {
         $this->timestamp = $dateTimeObject->getTimestamp();
 
@@ -135,7 +135,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setColor( $color )
+    public function setColor($color)
     {
         $this->color = $color;
 
@@ -147,7 +147,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setUrl( $url )
+    public function setUrl($url)
     {
         $this->url = $url;
 
@@ -159,7 +159,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setFooter( EmbedFooter $footer )
+    public function setFooter(EmbedFooter $footer)
     {
         $this->footer = $footer->toArray();
 
@@ -171,7 +171,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setImage( EmbedImage $image )
+    public function setImage(EmbedImage $image)
     {
         $this->image = $image->toArray();
 
@@ -183,7 +183,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setThumbnail( EmbedThumbnail $thumbnail )
+    public function setThumbnail(EmbedThumbnail $thumbnail)
     {
         $this->thumbnail = $thumbnail->toArray();
 
@@ -195,7 +195,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setAuthor( EmbedAuthor $author )
+    public function setAuthor(EmbedAuthor $author)
     {
         $this->author = $author->toArray();
 
@@ -207,7 +207,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setVideo( $video )
+    public function setVideo($video)
     {
         $this->video = $video->toArray();
 
@@ -219,7 +219,7 @@ class Embed implements EmbedInterface
      *
      * @return Embed
      */
-    public function setProvider( $provider )
+    public function setProvider($provider)
     {
         $this->provider = $provider->toArray();
 
@@ -231,7 +231,7 @@ class Embed implements EmbedInterface
      *
      * @return $this
      */
-    public function setField( EmbedField $field )
+    public function setField(EmbedField $field)
     {
         $this->fields[] = $field->toArray();
 

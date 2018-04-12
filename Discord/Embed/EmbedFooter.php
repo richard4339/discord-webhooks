@@ -15,7 +15,7 @@ class EmbedFooter extends AbstractEmbed
      *
      * @return EmbedFooter
      */
-    public function setText( $text )
+    public function setText($text)
     {
         $this->text = $text;
 
@@ -27,7 +27,7 @@ class EmbedFooter extends AbstractEmbed
      *
      * @return EmbedFooter
      */
-    public function setIconUrl( $iconUrl )
+    public function setIconUrl($iconUrl)
     {
         $this->iconUrl = $iconUrl;
 
@@ -39,7 +39,7 @@ class EmbedFooter extends AbstractEmbed
      *
      * @return EmbedFooter
      */
-    public function setProxyIconUrl( $proxyIconUrl )
+    public function setProxyIconUrl($proxyIconUrl)
     {
         $this->proxyIconUrl = $proxyIconUrl;
 
