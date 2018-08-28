@@ -31,6 +31,20 @@ $embed->setDescription( 'This is an embed' );
 $webhook->setUsername( 'Bot' )->setMessage( 'Hello, Human!' )->setEmbed( $embed )->send();
 ```
 
+Here is another example. Let's send some files.
+
+```php
+$webhook = new Webhook( 'DISCORD_WEBHOOK_URL' );
+$file = new File( "filename.jpg", "postname.jpg"/*optional*/ );
+
+$webhook
+    ->setUsername( 'Bot' ) /*optional*/
+    ->setAvatar( 'https://example.com/bot.jpg' ) /*optional*/
+    ->setMessage( 'Hello, Human!' ) /*optional*/
+    ->setFile( $file )
+    ->send();
+```
+
 To style your embeds properly, you can have a look at this website: [https://cog-creators.github.io/discord-embed-sandbox/](https://cog-creators.github.io/discord-embed-sandbox/)\
 Maybe the site can help you structuring your embeds properly ;)
 
@@ -88,6 +102,7 @@ $wh
     ->setEmbed( $embed )
     ->send();
 ```
+
 
 Here's the official color list to colorize your embeds:
 ```javascript
