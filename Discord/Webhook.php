@@ -125,7 +125,7 @@ class Webhook
     public function setFile($file)
     {
         $this->data['file'] = curl_file_create($file->getFile(), null, $file->getFileName());
-        $this->file         = $this->data;
+        $this->file         = $this->data['file'];
 
         return $this;
     }
@@ -140,13 +140,26 @@ class Webhook
      */
     public function send($unsetFields = false)
     {
-        $payload = json_encode([
-            'username'   => $this->username,
-            'avatar_url' => $this->avatar,
-            'content'    => $this->message,
-            'embeds'     => $this->embeds,
-            'tts'        => $this->tts,
-        ]);
+    	$payload = [];
+    	if (isset($this->username) == true) {
+    		$payload['username'] = $this->username;
+    	}
+    	if (isset($this->username) == true) {
+    		$payload['avatar_url'] = $this->avatar;
+    	}
+    	if (isset($this->message) == true) {
+    		$payload['content'] = $this->message;
+    	}
+    	if (isset($this->tts) == true) {
+    		$payload['tts'] = $this->tts;
+    	}
+        if (isset($this->file) == true) {
+            $payload['file'] = $this->file;
+        }
+        elseif (isset($this->embeds) == true) {
+            $payload['embeds'] = $this->embeds;
+            $payload = json_encode($payload);
+        }
 
         $ch = curl_init();
 
@@ -157,7 +170,7 @@ class Webhook
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, isset($this->file) ? $this->file : $payload);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
         $result = curl_exec($ch);
         // Check for errors and display the error message
