@@ -3,12 +3,12 @@
 namespace Discord\Embed;
 
 /**
- * Class EmbedVideo
+ * Class Image
  *
  * @author  Scrummer <scrummer@gmx.ch>
- * @package DiscordWebhooks\Embed
+ * @package Discord\Embed
  */
-class EmbedVideo extends AbstractEmbed
+class Image extends AbstractEmbed
 {
     /**
      * @param string $url
@@ -23,13 +23,13 @@ class EmbedVideo extends AbstractEmbed
     }
 
     /**
-     * @param int $width
+     * @param string $proxyUrl
      *
      * @return self
      */
-    public function setWidth($width)
+    public function setProxyUrl($proxyUrl)
     {
-        $this->width = $width;
+        $this->proxyUrl = $proxyUrl;
 
         return $this;
     }
@@ -47,6 +47,18 @@ class EmbedVideo extends AbstractEmbed
     }
 
     /**
+     * @param int $width
+     *
+     * @return self
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
      * Converts the embed object to an array
      *
      * @return array
@@ -54,9 +66,10 @@ class EmbedVideo extends AbstractEmbed
     public function toArray()
     {
         return [
-            'url'    => $this->url,
-            'height' => $this->height,
-            'width'  => $this->width
+            'url'       => $this->url,
+            'proxy_url' => $this->proxyUrl,
+            'height'    => $this->height,
+            'width'     => $this->width
         ];
     }
 }

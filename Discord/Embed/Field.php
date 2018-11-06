@@ -3,17 +3,17 @@
 namespace Discord\Embed;
 
 /**
- * Class EmbedField
+ * Class Field
  *
  * @author  Scrummer <scrummer@gmx.ch>
- * @package DiscordWebhooks\Embed
+ * @package Discord\Embed
  */
-class EmbedField extends AbstractEmbed
+class Field extends AbstractEmbed
 {
     /**
      * @param string $name
      *
-     * @return EmbedField
+     * @return Field
      */
     public function setName($name)
     {
@@ -25,7 +25,7 @@ class EmbedField extends AbstractEmbed
     /**
      * @param string $value
      *
-     * @return EmbedField
+     * @return Field
      */
     public function setValue($value)
     {
@@ -37,7 +37,7 @@ class EmbedField extends AbstractEmbed
     /**
      * @param bool $inline
      *
-     * @return EmbedField
+     * @return Field
      */
     public function setInline($inline)
     {

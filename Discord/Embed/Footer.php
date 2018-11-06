@@ -3,17 +3,17 @@
 namespace Discord\Embed;
 
 /**
- * Class EmbedFooter
+ * Class Footer
  *
  * @author  Scrummer <scrummer@gmx.ch>
- * @package DiscordWebhooks\Embed
+ * @package Discord\Embed
  */
-class EmbedFooter extends AbstractEmbed
+class Footer extends AbstractEmbed
 {
     /**
      * @param string $text
      *
-     * @return EmbedFooter
+     * @return Footer
      */
     public function setText($text)
     {
@@ -25,7 +25,7 @@ class EmbedFooter extends AbstractEmbed
     /**
      * @param string $iconUrl
      *
-     * @return EmbedFooter
+     * @return Footer
      */
     public function setIconUrl($iconUrl)
     {
@@ -37,7 +37,7 @@ class EmbedFooter extends AbstractEmbed
     /**
      * @param string $proxyIconUrl
      *
-     * @return EmbedFooter
+     * @return Footer
      */
     public function setProxyIconUrl($proxyIconUrl)
     {

@@ -5,7 +5,8 @@ namespace Discord;
 /**
  * Class Webhook
  *
- * Webhook generates the payload and sends the webhook payload to Discord
+ * @author Scrummer <scrummer@gmx.ch>
+ * @package Discord
  */
 class Webhook
 {
@@ -110,9 +111,9 @@ class Webhook
      *
      * @return Webhook
      */
-    public function setEmbed($embed)
+    public function addEmbed($embed)
     {
-        $this->embeds[] = $embed->toArray();
+        $this->embeds[] = $embed->__toArray();
 
         return $this;
     }
@@ -140,25 +141,24 @@ class Webhook
      */
     public function send($unsetFields = false)
     {
-    	$payload = [];
-    	if (isset($this->username) == true) {
-    		$payload['username'] = $this->username;
-    	}
-    	if (isset($this->username) == true) {
-    		$payload['avatar_url'] = $this->avatar;
-    	}
-    	if (isset($this->message) == true) {
-    		$payload['content'] = $this->message;
-    	}
-    	if (isset($this->tts) == true) {
-    		$payload['tts'] = $this->tts;
-    	}
+        $payload = [];
+        if (isset($this->username) == true) {
+            $payload['username'] = $this->username;
+        }
+        if (isset($this->username) == true) {
+            $payload['avatar_url'] = $this->avatar;
+        }
+        if (isset($this->message) == true) {
+            $payload['content'] = $this->message;
+        }
+        if (isset($this->tts) == true) {
+            $payload['tts'] = $this->tts;
+        }
         if (isset($this->file) == true) {
             $payload['file'] = $this->file;
-        }
-        elseif (isset($this->embeds) == true) {
+        } elseif (isset($this->embeds) == true) {
             $payload['embeds'] = $this->embeds;
-            $payload = json_encode($payload);
+            $payload           = json_encode($payload);
         }
 
         $ch = curl_init();
@@ -179,7 +179,7 @@ class Webhook
             throw new \Exception("cURL error ({$errno}):\n {$error_message}");
         }
 
-        $json_result = json_decode($result, true);
+        json_decode($result, true);
 
         if (($httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE)) != 204 && ($httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE)) != 200) {
             throw new \Exception($httpcode . ':' . $result);

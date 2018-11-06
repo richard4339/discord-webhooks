@@ -8,15 +8,16 @@
             "name": "Kyle Thompson",
             "email": "jmp@const.ninja"
         },
-		{
-			"name": "Scrummer",
-			"email": "scrummer@labymod.net",
-			"role": "Developer"
-		}
+        {
+            "name": "Scrummer",
+            "email": "scrummer@gmx.ch",
+            "role": "Developer"
+        }
     ],
     "require": {
+        "php": ">=5.4",
         "ext-curl": "*",
-        "php": ">=5.4"
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

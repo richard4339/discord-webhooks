@@ -3,17 +3,17 @@
 namespace Discord\Embed;
 
 /**
- * Class EmbedAuthor
+ * Class Author
  *
  * @author  Scrummer <scrummer@gmx.ch>
- * @package DiscordWebhooks\Embed
+ * @package Discord\Embed
  */
-class EmbedAuthor extends AbstractEmbed
+class Author extends AbstractEmbed
 {
     /**
      * @param string $name
      *
-     * @return EmbedAuthor
+     * @return Author
      */
     public function setName($name)
     {
@@ -25,7 +25,7 @@ class EmbedAuthor extends AbstractEmbed
     /**
      * @param string $url
      *
-     * @return EmbedAuthor
+     * @return Author
      */
     public function setUrl($url)
     {
@@ -37,7 +37,7 @@ class EmbedAuthor extends AbstractEmbed
     /**
      * @param string $iconUrl
      *
-     * @return EmbedAuthor
+     * @return Author
      */
     public function setIconUrl($iconUrl)
     {
@@ -49,7 +49,7 @@ class EmbedAuthor extends AbstractEmbed
     /**
      * @param string $proxyIconUrl
      *
-     * @return EmbedAuthor
+     * @return Author
      */
     public function setProxyIconUrl($proxyIconUrl)
     {

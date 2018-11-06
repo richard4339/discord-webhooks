@@ -3,21 +3,21 @@
 namespace Discord;
 
 use DateTime;
-use Discord\Embed\EmbedAuthor;
-use Discord\Embed\EmbedField;
-use Discord\Embed\EmbedFooter;
-use Discord\Embed\EmbedImage;
-use Discord\Embed\EmbedInterface;
-use Discord\Embed\EmbedProvider;
-use Discord\Embed\EmbedThumbnail;
-use Discord\Embed\EmbedVideo;
+use Discord\Embed\Author;
+use Discord\Embed\Field;
+use Discord\Embed\Footer;
+use Discord\Embed\Image;
+use Discord\Embed\Provider;
+use Discord\Embed\Thumbnail;
+use Discord\Embed\Video;
 
 /**
  * Class Embed
  *
- * Embed is an embed object to be included in a webhook message
+ * @author Scrummer <scrummer@gmx.ch>
+ * @package Discord
  */
-class Embed implements EmbedInterface
+class Embed
 {
     /**
      * @var string $title
@@ -50,32 +50,32 @@ class Embed implements EmbedInterface
     private $color;
 
     /**
-     * @var EmbedFooter
+     * @var Footer
      */
     private $footer;
 
     /**
-     * @var EmbedImage
+     * @var Image
      */
     private $image;
 
     /**
-     * @var EmbedThumbnail
+     * @var Thumbnail
      */
     private $thumbnail;
 
     /**
-     * @var EmbedVideo
+     * @var Video
      */
     private $video;
 
     /**
-     * @var EmbedProvider
+     * @var Provider
      */
     private $provider;
 
     /**
-     * @var EmbedAuthor
+     * @var Author
      */
     private $author;
 
@@ -155,11 +155,11 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedFooter $footer
+     * @param Footer $footer
      *
      * @return Embed
      */
-    public function setFooter(EmbedFooter $footer)
+    public function setFooter(Footer $footer)
     {
         $this->footer = $footer->toArray();
 
@@ -167,11 +167,11 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedImage $image
+     * @param Image $image
      *
      * @return Embed
      */
-    public function setImage(EmbedImage $image)
+    public function setImage(Image $image)
     {
         $this->image = $image->toArray();
 
@@ -179,11 +179,11 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedThumbnail $thumbnail
+     * @param Thumbnail $thumbnail
      *
      * @return Embed
      */
-    public function setThumbnail(EmbedThumbnail $thumbnail)
+    public function setThumbnail(Thumbnail $thumbnail)
     {
         $this->thumbnail = $thumbnail->toArray();
 
@@ -191,11 +191,11 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedAuthor $author
+     * @param Author $author
      *
      * @return Embed
      */
-    public function setAuthor(EmbedAuthor $author)
+    public function setAuthor(Author $author)
     {
         $this->author = $author->toArray();
 
@@ -203,7 +203,7 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedVideo $video
+     * @param Video $video
      *
      * @return Embed
      */
@@ -215,7 +215,7 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedProvider $provider
+     * @param Provider $provider
      *
      * @return Embed
      */
@@ -227,11 +227,11 @@ class Embed implements EmbedInterface
     }
 
     /**
-     * @param EmbedField $field
+     * @param Field $field
      *
      * @return $this
      */
-    public function setField(EmbedField $field)
+    public function setField(Field $field)
     {
         $this->fields[] = $field->toArray();
 
@@ -243,7 +243,7 @@ class Embed implements EmbedInterface
      *
      * @return array
      */
-    public function toArray()
+    public function __toArray()
     {
         return [
             'title'       => $this->title,

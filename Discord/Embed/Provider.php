@@ -3,17 +3,17 @@
 namespace Discord\Embed;
 
 /**
- * Class EmbedProvider
+ * Class Provider
  *
  * @author  Scrummer <scrummer@gmx.ch>
- * @package DiscordWebhooks\Embed
+ * @package Discord\Embed
  */
-class EmbedProvider extends AbstractEmbed
+class Provider extends AbstractEmbed
 {
     /**
      * @param string $name
      *
-     * @return EmbedProvider
+     * @return Provider
      */
     public function setName($name)
     {
@@ -25,7 +25,7 @@ class EmbedProvider extends AbstractEmbed
     /**
      * @param string $url
      *
-     * @return EmbedProvider
+     * @return Provider
      */
     public function setUrl($url)
     {
