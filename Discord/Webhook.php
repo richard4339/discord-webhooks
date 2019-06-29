@@ -14,64 +14,40 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class Webhook
 {
     /**
-     * @var string
-     */
-    private $url;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $avatar;
-
-    /**
-     * @var string
-     */
-    private $message;
-
-    /**
-     * @var array
-     */
-    private $embeds;
-
-    /**
-     * @var bool
-     */
-    private $tts;
-
-    /**
-     * @var array
-     */
-    private $file;
-
-    /**
-     * @var array
-     */
-    private $data = [];
-
-    /**
      * @var HttpClientInterface
      */
     protected $httpClient;
-
     /**
-     * @param string $url
+     * @var string
      */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
+    private $url;
+    /**
+     * @var string|null
+     */
+    private $username;
+    /**
+     * @var string|null
+     */
+    private $avatar;
+    /**
+     * @var string|null
+     */
+    private $message;
+    /**
+     * @var Embed[]|null
+     */
+    private $embeds;
+    /**
+     * @var bool
+     */
+    private $tts = false;
 
     /**
      * @param bool $tts
      *
      * @return Webhook
      */
-    public function setTts($tts = false)
+    public function setTts(?bool $tts = false)
     {
         $this->tts = $tts;
 
@@ -91,30 +67,6 @@ class Webhook
     }
 
     /**
-     * @param string $url
-     *
-     * @return Webhook
-     */
-    public function setAvatar($url)
-    {
-        $this->avatar = $url;
-
-        return $this;
-    }
-
-    /**
-     * @param string $message
-     *
-     * @return Webhook
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    /**
      * @param Embed $embed
      *
      * @return Webhook
@@ -122,19 +74,6 @@ class Webhook
     public function addEmbed($embed)
     {
         $this->embeds[] = $embed->__toArray();
-
-        return $this;
-    }
-
-    /**
-     * @param File $file
-     *
-     * @return Webhook
-     */
-    public function setFile($file)
-    {
-        $this->data['file'] = curl_file_create($file->getFile(), null, $file->getFileName());
-        $this->file         = $this->data['file'];
 
         return $this;
     }
@@ -154,8 +93,7 @@ class Webhook
      */
     public function send(?bool $unsetFields = false)
     {
-        if(empty($this->url))
-        {
+        if (empty($this->url)) {
             throw new \Exception('URL has not been defined.');
         }
         $this->message = 'Symfony';
@@ -172,9 +110,7 @@ class Webhook
         if (isset($this->tts) == true) {
             $payload['tts'] = $this->tts;
         }
-        if (isset($this->file) == true) {
-            $payload['file'] = $this->file;
-        } elseif (isset($this->embeds) == true) {
+        if (isset($this->embeds) == true) {
             $payload['embeds'] = $this->embeds;
         }
 
@@ -187,8 +123,7 @@ class Webhook
 
         $status = $response->getStatusCode();
 
-        switch ($status)
-        {
+        switch ($status) {
             case 200:
             case 204:
                 break;
@@ -205,29 +140,11 @@ class Webhook
     }
 
     /**
-     *
-     */
-    private function unsetFields()
-    {
-        foreach (get_object_vars($this) as $index => $var) {
-            switch($index)
-            {
-                case 'httpClient':
-                    break;
-                default:
-                    unset($var);
-                    break;
-            }
-        }
-    }
-
-    /**
      * @return HttpClientInterface
      */
     public function getHttpClient()
     {
-        if(empty($this->httpClient))
-        {
+        if (empty($this->httpClient)) {
             return $this->createHttpClient();
         }
         return $this->httpClient;
@@ -250,6 +167,66 @@ class Webhook
     {
         $this->httpClient = HttpClient::create();
         return $this->httpClient;
+    }
+
+    /**
+     *
+     */
+    private function unsetFields()
+    {
+        foreach (get_object_vars($this) as $index => $var) {
+            switch ($index) {
+                case 'httpClient':
+                    break;
+                default:
+                    unset($var);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return Webhook
+     */
+    public function setUrl(string $url): Webhook
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @param string|null $avatar
+     *
+     * @return Webhook
+     */
+    public function setAvatar(?string $avatar): Webhook
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+    /**
+     * @param string|null $message
+     *
+     * @return Webhook
+     */
+    public function setMessage(?string $message): Webhook
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @param Embed[]|null $embeds
+     *
+     * @return Webhook
+     */
+    public function setEmbeds(?array $embeds): Webhook
+    {
+        $this->embeds = $embeds;
+        return $this;
     }
 
 
