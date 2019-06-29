@@ -227,11 +227,25 @@ class Embed
     }
 
     /**
+     * @param Field[]|null $fields
+     *
+     * @return $this
+     */
+    public function setFields(array $fields)
+    {
+        $this->fields = $fields;
+
+        return $this;
+    }
+
+
+
+    /**
      * @param Field $field
      *
      * @return $this
      */
-    public function setField(Field $field)
+    public function addField(Field $field)
     {
         $this->fields[] = $field->toArray();
 

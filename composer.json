@@ -1,11 +1,11 @@
 {
-    "name": "labymod/discord-webhooks",
+    "name": "richard4339/discord-webhooks",
     "description": "A fork from nopjmp/discord-webhooks",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Kyle Thompson",
+            "name": "Kayla Thompson",
             "email": "jmp@const.ninja"
         },
         {
@@ -15,9 +15,10 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
+        "php": ">=7.1",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "symfony/http-client": "^4.3"
     },
     "autoload": {
         "psr-4": {

@@ -2,6 +2,9 @@
 
 namespace Discord;
 
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 /**
  * Class Webhook
  *
@@ -49,6 +52,11 @@ class Webhook
      * @var array
      */
     private $data = [];
+
+    /**
+     * @var HttpClientInterface
+     */
+    protected $httpClient;
 
     /**
      * @param string $url
@@ -134,13 +142,23 @@ class Webhook
     /**
      * Send the Webhook
      *
-     * @param bool $unsetFields
+     * @param bool|null $unsetFields
      *
-     * @return Webhook
+     * @return $this
+     *
      * @throws \Exception
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function send($unsetFields = false)
+    public function send(?bool $unsetFields = false)
     {
+        if(empty($this->url))
+        {
+            throw new \Exception('URL has not been defined.');
+        }
+        $this->message = 'Symfony';
         $payload = [];
         if (isset($this->username) == true) {
             $payload['username'] = $this->username;
@@ -158,34 +176,27 @@ class Webhook
             $payload['file'] = $this->file;
         } elseif (isset($this->embeds) == true) {
             $payload['embeds'] = $this->embeds;
-            $payload           = json_encode($payload);
         }
 
-        $ch = curl_init();
+        $response = $this->getHttpClient()->request('POST', $this->url, [
+            'query' => [
+                'wait' => true,
+            ],
+            'json' => $payload
+        ]);
 
-        curl_setopt($ch, CURLOPT_URL, $this->url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: multipart/form-data']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        $status = $response->getStatusCode();
 
-        $result = curl_exec($ch);
-        // Check for errors and display the error message
-        if ($errno = curl_errno($ch)) {
-            $error_message = curl_strerror($errno);
-            throw new \Exception("cURL error ({$errno}):\n {$error_message}");
+        switch ($status)
+        {
+            case 200:
+            case 204:
+                break;
+            default:
+                throw new \Exception($status . ':' . json_decode($response->getContent(false));
+                break;
         }
 
-        json_decode($result, true);
-
-        if (($httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE)) != 204 && ($httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE)) != 200) {
-            throw new \Exception($httpcode . ':' . $result);
-        }
-
-        curl_close($ch);
         if ($unsetFields) {
             $this->unsetFields();
         }
@@ -193,10 +204,53 @@ class Webhook
         return $this;
     }
 
+    /**
+     *
+     */
     private function unsetFields()
     {
-        foreach (get_object_vars($this) as $var) {
-            unset($var);
+        foreach (get_object_vars($this) as $index => $var) {
+            switch($index)
+            {
+                case 'httpClient':
+                    break;
+                default:
+                    unset($var);
+                    break;
+            }
         }
     }
+
+    /**
+     * @return HttpClientInterface
+     */
+    public function getHttpClient()
+    {
+        if(empty($this->httpClient))
+        {
+            return $this->createHttpClient();
+        }
+        return $this->httpClient;
+    }
+
+    /**
+     * @param HttpClientInterface $httpClient
+     * @return Webhook
+     */
+    public function setHttpClient(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+        return $this;
+    }
+
+    /**
+     * @return HttpClientInterface
+     */
+    protected function createHttpClient()
+    {
+        $this->httpClient = HttpClient::create();
+        return $this->httpClient;
+    }
+
+
 }
